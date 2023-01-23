@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BASE64 DECODER</title>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- font awesome cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>BASE64 DECODER</h1>
+      <div class="row">
+        <div class="col">
+          <h3>INPUT</h3>
+          <textarea id="uri_data"></textarea>
+        </div>
+        <div class="col">
+          <h3>OUTPUT</h3>
+          <textarea id="output_data"></textarea>
+        </div>
+      </div>
+      <button class="btn" onclick="encodeURI1()">BASE64 DECODE</button>
+      <div class="credit">
+        created by <span>IEE Group-09</span> | all rights reserved
+      </div>
+    </div>
+  </body>
+  <script>
+    function encodeURI1() {
+      var uri = document.getElementById("uri_data").value;
+      var decodestr = atob(uri);
+      console.log(decodestr);
+      try {
+        console.log(decodeURI(decodestr));
+      } catch (e) {
+        console.error(e);
+      }
+      document.getElementById("output_data").innerHTML = decodestr;
+    }
+  </script>
+</html>

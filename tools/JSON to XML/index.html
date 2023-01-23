@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON TO XML</title>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- font awesome cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>JSON to XML converter</h1>
+      <div class="row">
+        <div class="col">
+          <h3>JSON</h3>
+          <textarea id="json_data"></textarea>
+        </div>
+        <div class="col">
+          <h3>XMl</h3>
+          <textarea id="xml_data"></textarea>
+        </div>
+      </div>
+      <button class="btn" onclick="jtoxConvert()">JSON to XML</button>
+      <div class="credit">
+        created by <span>IEE Group-09</span> | all rights reserved
+      </div>
+    </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/x2js/1.2.0/xml2json.js"></script>
+  <script>
+    function jtoxConvert() {
+      var x2js = new X2JS();
+      var jsonData = document.getElementById("json_data").value;
+      var xmlMin = x2js.json2xml_str(JSON.parse(jsonData));
+      //   console.log(xmlMin);
+
+      function formatXml(xml, tab) {
+        // tab = optional indent value, default is tab (\t)
+        var formatted = "",
+          indent = "";
+        tab = tab || "\t";
+        xml.split(/>\s*</).forEach(function (node) {
+          if (node.match(/^\/\w/)) indent = indent.substring(tab.length); // decrease indent by one 'tab'
+          formatted += indent + "<" + node + ">\r\n";
+          if (node.match(/^<?\w[^>]*[^\/]$/)) indent += tab; // increase indent
+        });
+        return formatted.substring(1, formatted.length - 3);
+      }
+      document.getElementById("xml_data").innerHTML = formatXml(xmlMin, " ");
+    }
+  </script>
+</html>
